@@ -1,0 +1,30 @@
+options:
+    ban_hours: 6
+    broadcast: true
+    broadcast_message: "&6&l> &7Ilkeä pelaaja &e%attacker% &7tappoi pelaajan &e%victim%&7."
+    first_kick_message: "&fOlet tappanut pelaajan :(%newline%&7Pääset takaisin %{@ban_hours}% tunnin kuluttua."
+    join_kick_message: "&fOlet tappanut pelaajan :(%newline%&7Pääset takaisin %{_left}% kuluttua."
+
+on connect:
+    set {_diff} to difference between {killerban.%player's uuid%} and now
+    if {_diff} is less than {@ban_hours} hours:
+        set {_left} to {@ban_hours} hours 
+        remove {_diff} from {_left}
+        set {_left} to "%{_left}%"
+        replace all "and" with "ja" in {_left}
+        replace all "hours" with "tunnin" in {_left}
+        replace all "hour" with "tunnin" in {_left}
+        replace all "minutes" with "minuutin" in {_left}
+        replace all "minute" with "minuutin" in {_left}
+        replace all "seconds" with "sekunnin" in {_left}
+        replace all "second" with "sekunnin" in {_left}
+        kick the player due to {@join_kick_message}
+
+on death:
+    victim is a player:
+        attacker is a player:
+            if victim is not attacker:
+                if {@broadcast} is true:
+                    broadcast {@broadcast_message}
+                set {killerban.%attacker's uuid%} to now
+                kick the damager due to {@first_kick_message}
