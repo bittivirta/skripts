@@ -1,6 +1,4 @@
 <img src="https://cdn.bittivirta.fi/graphics/logo/bittivirta/svg/bittivirta.svg" height="80">
-<br>
-<br>
 
 # Skript samples provided by Bittivirta
 Since Minecraft is one of our most hosted games and Skript most used plugin to allow server owners to program their plugin-a-like scripts easily, we decided to publish Skripts that we create here.
