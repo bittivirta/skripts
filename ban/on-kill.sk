@@ -1,9 +1,9 @@
 options:
-    ban_minutes: 60
+    ban_minutes: 1
     broadcast: true
 
     broadcast_message: "&3&l◆ &7An evil player &f%attacker% &7killed player &f%victim%&7."
-    first_kick_message: "&3&lYou have killed a player :(%newline%&7You can come back after %{@ban_minutes}% minutes."
+    first_kick_message: "&3&lYou have killed a player :(%newline%&7You can come back after %{_left}% minutes."
     join_kick_message: "&3&lYou have killed a player :(%newline%&7You can come back after %{_left}%."
 
     ban_removed_message: "&3&l◆ &7Player's kill ban record has been removed."
@@ -16,6 +16,8 @@ on connect:
         set {_left} to {@ban_minutes} minutes 
         remove {_diff} from {_left}
         kick the player due to {@join_kick_message}
+    else:
+        delete {killerban.%player%}
 
 on death:
     victim is a player:
@@ -24,6 +26,7 @@ on death:
                 if {@broadcast} is true:
                     broadcast {@broadcast_message}
                 set {killerban.%attacker's uuid%} to now
+                set {_left} to {@ban_minutes}
                 kick the damager due to {@first_kick_message}
 
 command /unkillban [<text>]:
