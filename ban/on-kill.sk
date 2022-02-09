@@ -6,6 +6,10 @@ options:
     first_kick_message: "&fYou have killed a player :(%newline%&7You can come back after %{@ban_hours}% hours."
     join_kick_message: "&fYou have killed a player :(%newline%&7You can come back after %{_left}%."
 
+    ban_removed_message: "&3&l◆ &7Player's kill ban record has been removed."
+    not_banned_message: "&3&l◆ &7Player does not have a kill ban in their record. (check that the UUID is the dashed version)"
+    usage_message: "&3&l◆ &7Please enter player's uuid &f/unkillban <uuid>"
+
 on connect:
     set {_diff} to difference between {killerban.%player's uuid%} and now
     if {_diff} is less than {@ban_hours} hours:
@@ -28,8 +32,8 @@ command /unkillban <uuid>:
     trigger:
         if arg 1 is set:
             if {killerban.%arg 1%} is set:
-                message "&3&l◆ &7Player's kill ban record has been removed."
+                message {@ban_removed}
             else:
-                message "&3&l◆ &7Player does not have a kill ban in their record. (check that the UUID is the dashed version)"
+                message {@not_banned_message}
         else:
-            message "&3&l◆ &7Please enter player's uuid &f/unkillban <uuid>"
+            message {@usage_message}
