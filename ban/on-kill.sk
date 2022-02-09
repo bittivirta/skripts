@@ -1,6 +1,7 @@
 options:
     ban_hours: 6
     broadcast: true
+
     broadcast_message: "&6&l> &7An evil player &e%attacker% &7killed player &e%victim%&7."
     first_kick_message: "&fYou have killed a player :(%newline%&7You can come back after %{@ban_hours}% hours."
     join_kick_message: "&fYou have killed a player :(%newline%&7You can come back after %{_left}%."
@@ -20,3 +21,15 @@ on death:
                     broadcast {@broadcast_message}
                 set {killerban.%attacker's uuid%} to now
                 kick the damager due to {@first_kick_message}
+
+command /unkillban <uuid>:
+    permission: bittivirta.on-kill.unkillban
+    aliases: ukb
+    trigger:
+        if arg 1 is set:
+            if {killerban.%arg 1%} is set:
+                message "&3&l◆ &7Player's kill ban record has been removed."
+            else:
+                message "&3&l◆ &7Player does not have a kill ban in their record. (check that the UUID is the dashed version)"
+        else:
+            message "&3&l◆ &7Please enter player's uuid &f/unkillban <uuid>"
