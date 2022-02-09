@@ -32,6 +32,7 @@ command /unkillban [<text>]:
     trigger:
         if arg 1 is set:
             if {killerban.%arg 1%} is set:
+                delete {killerban.%arg 1%}
                 message {@ban_removed_message}
             else:
                 message {@not_banned_message}
