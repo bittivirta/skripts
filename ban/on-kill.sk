@@ -1,9 +1,9 @@
 options:
-    ban_hours: 6
+    ban_minutes: 60
     broadcast: true
 
     broadcast_message: "&3&l◆ &7An evil player &f%attacker% &7killed player &f%victim%&7."
-    first_kick_message: "&3&lYou have killed a player :(%newline%&7You can come back after %{@ban_hours}% hours."
+    first_kick_message: "&3&lYou have killed a player :(%newline%&7You can come back after %{@ban_minutes}% minutes."
     join_kick_message: "&3&lYou have killed a player :(%newline%&7You can come back after %{_left}%."
 
     ban_removed_message: "&3&l◆ &7Player's kill ban record has been removed."
@@ -12,8 +12,8 @@ options:
 
 on connect:
     set {_diff} to difference between {killerban.%player's uuid%} and now
-    if {_diff} is less than {@ban_hours} hours:
-        set {_left} to {@ban_hours} hours 
+    if {_diff} is less than {@ban_minutes} minutes:
+        set {_left} to {@ban_minutes} minutes 
         remove {_diff} from {_left}
         kick the player due to {@join_kick_message}
 
