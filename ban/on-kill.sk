@@ -2,9 +2,9 @@ options:
     ban_hours: 6
     broadcast: true
 
-    broadcast_message: "&6&l> &7An evil player &e%attacker% &7killed player &e%victim%&7."
-    first_kick_message: "&fYou have killed a player :(%newline%&7You can come back after %{@ban_hours}% hours."
-    join_kick_message: "&fYou have killed a player :(%newline%&7You can come back after %{_left}%."
+    broadcast_message: "&3&l◆ &7An evil player &f%attacker% &7killed player &f%victim%&7."
+    first_kick_message: "&3&lYou have killed a player :(%newline%&7You can come back after %{@ban_hours}% hours."
+    join_kick_message: "&3&lYou have killed a player :(%newline%&7You can come back after %{_left}%."
 
     ban_removed_message: "&3&l◆ &7Player's kill ban record has been removed."
     not_banned_message: "&3&l◆ &7Player does not have a kill ban in their record. (check that the UUID is the dashed version)"
