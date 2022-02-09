@@ -26,13 +26,13 @@ on death:
                 set {killerban.%attacker's uuid%} to now
                 kick the damager due to {@first_kick_message}
 
-command /unkillban <uuid>:
+command /unkillban [<text>]:
     permission: bittivirta.on-kill.unkillban
     aliases: ukb
     trigger:
         if arg 1 is set:
             if {killerban.%arg 1%} is set:
-                message {@ban_removed}
+                message {@ban_removed_message}
             else:
                 message {@not_banned_message}
         else:
